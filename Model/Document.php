@@ -1,7 +1,8 @@
 <?php
     include '../db_connection.php';
     include './Kata.php';
-    $artikel = new Document($conn);
+
+    $document = new Document($conn);
 
     class Document {
         public function __construct($conn){
@@ -12,9 +13,10 @@
             $title = $arr['title'];
             $deskripsi = $arr['deskripsi'];
             $sql = "INSERT INTO artikel (title, deskripsi) VALUES ('$title', '$deskripsi')";
-            return mysqli_query($this->conn, $sql);
 
-            checkDB(['id' => 20, 'arrya' => $att]);
+            //check DB
+            $kata = new Kata($this->conn);
+            $kata->checkDB(['id' => 20, 'arrya' => $att]);
             return mysqli_query($this->conn, $sql);
         }
 
