@@ -1,10 +1,28 @@
 <?php
     include '../db_connection.php';
+    include './DocumentKata.php';
+
     $artikel = new Kata($conn);
 
     class Kata {
         public function __construct($conn){
             $this->conn = $conn;
+        }
+
+        // [
+        //   "id",
+        //   "array"
+        // ]
+        public function checkDB($rr){
+          $arr["array"] = [""];
+          $id_document = $arr["id"];
+          $array = $arr["array"];
+
+
+          $documentKata = new DocumentKata($this->conn);
+
+          $createFrekuensi = $documentKata->create($arr);
+          $createDocumentKata = $documentKata->updateFrekuensi($arr);
         }
 
         public function create($arr){
@@ -14,18 +32,12 @@
             return mysqli_query($this->conn, $sql);
         }
 
-        public function update($arr){
-            $id = $arr['id'];
-            $deskripsi = $arr['deskripsi'];
-            $title = $arr['title'];
-            $sql = "UPDATE artikel SET title = '$title', deskripsi = '$deskripsi' WHERE id = '$id'";
-            return mysqli_query($this->conn, $sql);
+        public function createFrekuensi($arr){
+
         }
 
         public function read(){
-            $sql = "SELECT * FROM artikel";
-            $artikel = $this->conn->query($sql);
-            return $artikel;
+
         }
 
         public function edit($id){

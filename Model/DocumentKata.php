@@ -1,6 +1,5 @@
 <?php
     include '../db_connection.php';
-    $artikel = new DocumentKata($conn);
 
     class DocumentKata {
         public function __construct($conn){
@@ -8,29 +7,19 @@
         }
 
         public function create($arr){
-            $title = $arr['title'];
+            $title = $arr['id_kata'];
             $deskripsi = $arr['deskripsi'];
             $sql = "INSERT INTO artikel (title, deskripsi) VALUES ('$title', '$deskripsi')";
             return mysqli_query($this->conn, $sql);
         }
 
-        public function update($arr){
-            $id = $arr['id'];
-            $deskripsi = $arr['deskripsi'];
-            $title = $arr['title'];
-            $sql = "UPDATE artikel SET title = '$title', deskripsi = '$deskripsi' WHERE id = '$id'";
-            return mysqli_query($this->conn, $sql);
+        public function updateFrekuensi($arr){
+          
         }
 
         public function read(){
             $sql = "SELECT * FROM artikel";
-            $artikel = $this->conn->query($sql);
-            return $artikel;
-        }
-
-        public function edit($id){
-            $sql = "SELECT * FROM artikel WHERE id = '$id'";
-            $artikel = $this->conn->query($sql);
+            $documentKata = $this->conn->query($sql);
             return $artikel;
         }
 

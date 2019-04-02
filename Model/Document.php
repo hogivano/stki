@@ -1,5 +1,6 @@
 <?php
     include '../db_connection.php';
+    include './Kata.php';
     $artikel = new Document($conn);
 
     class Document {
@@ -12,24 +13,13 @@
             $deskripsi = $arr['deskripsi'];
             $sql = "INSERT INTO artikel (title, deskripsi) VALUES ('$title', '$deskripsi')";
             return mysqli_query($this->conn, $sql);
-        }
 
-        public function update($arr){
-            $id = $arr['id'];
-            $deskripsi = $arr['deskripsi'];
-            $title = $arr['title'];
-            $sql = "UPDATE artikel SET title = '$title', deskripsi = '$deskripsi' WHERE id = '$id'";
+            checkDB(['id' => 20, 'arrya' => $att]);
             return mysqli_query($this->conn, $sql);
         }
 
         public function read(){
             $sql = "SELECT * FROM artikel";
-            $artikel = $this->conn->query($sql);
-            return $artikel;
-        }
-
-        public function edit($id){
-            $sql = "SELECT * FROM artikel WHERE id = '$id'";
             $artikel = $this->conn->query($sql);
             return $artikel;
         }
