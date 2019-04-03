@@ -1,6 +1,6 @@
 <?php
     include '../db_connection.php';
-    include './Kata.php';
+    
 
     $document = new Document($conn);
 
@@ -9,16 +9,21 @@
             $this->conn = $conn;
         }
 
-        public function create($arr){
-          echo "testing";
-            $title = $arr['title'];
-            $deskripsi = $arr['deskripsi'];
-            $sql = "INSERT INTO artikel (title, deskripsi) VALUES ('$title', '$deskripsi')";
+        public function create($document){   
+            
+            $result = "INSERT INTO stki(document) VALUES('$document')";
+            return mysqli_query($this->conn, $result);
 
+            $item=[" ",".","-",",","!","@","#","$","%","^","&","*","(",")","[","]","{","}"];
+            explode(" ",$document);
+            $arr = strtolower($document);
+            str_replace($item,"",$arr);
+            
+            
             //check DB
-            $kata = new Kata($this->conn);
-            $kata->checkDB(['id' => 20, 'arrya' => $att]);
-            return mysqli_query($this->conn, $sql);
+            // $kata = new Kata($this->conn);
+            // $kata->checkDB(['id' => 20, 'arrya' => $att]);
+            // return mysqli_query($this->conn, $sql);
         }
 
         public function read(){
