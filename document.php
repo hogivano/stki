@@ -68,7 +68,7 @@
                   <h4 class="card-title">Create</h4>
                 </div>
                 <div class="card-body">
-                  <form class="form" action="proses.php" method="post">
+                  <form class="form" action="./Controller/CreateController.php" method="post">
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <div class="input-group-text">

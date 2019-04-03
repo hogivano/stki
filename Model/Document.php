@@ -10,6 +10,7 @@
         }
 
         public function create($arr){
+          echo "testing";
             $title = $arr['title'];
             $deskripsi = $arr['deskripsi'];
             $sql = "INSERT INTO artikel (title, deskripsi) VALUES ('$title', '$deskripsi')";
