@@ -9,16 +9,16 @@
             $this->conn = $conn;
         }
 
+
         public function create($doc){
           $result = "INSERT INTO document (document) VALUES ('$doc')";
           if (mysqli_query($this->conn, $result)){
             $id_doc = mysqli_insert_id($this->conn);
-
-              // $arr1= strtolower($document);
-              // $item=[" ",".","-",",","!","@","#","$","%","^","&","*","(",")","[","]","{","}","<",">"];
-              // $arr2= explode(" ",$arr1);
-              // str_replace($item,"",$arr2);
-              // $arr = ["id" => $id_doc, 'array' => $arr2];
+              $arr1= strtolower($doc);
+              $item= ['','.','-',',','!','@','#','$','%','^','&','*','(',')','[',']','{','}','<','>','“','"','”',':',';'];
+              $arr2= explode(" ",$arr1);
+              str_replace($item,"",$arr2);
+              $arr = ["id" => $id_doc, 'array' => $arr2];
 
               //check DB
               // $kata = new Kata($this->conn);
