@@ -10,14 +10,18 @@
         }
 
         public function create($document){   
-            
+            echo $document;
+         
+
+
+            $arr1= strtolower($document);
+            $item=[" ",".","-",",","!","@","#","$","%","^","&","*","(",")","[","]","{","}","<",">"];
+            print_r($arr2= explode(" ",$arr1));
+            print_r(str_replace($item,"",$arr2));
+
             $result = "INSERT INTO stki(document) VALUES('$document')";
             return mysqli_query($this->conn, $result);
 
-            $item=[" ",".","-",",","!","@","#","$","%","^","&","*","(",")","[","]","{","}"];
-            explode(" ",$document);
-            $arr = strtolower($document);
-            str_replace($item,"",$arr);
             
             
             //check DB
