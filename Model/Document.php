@@ -18,12 +18,11 @@
               // $item=[" ",".","-",",","!","@","#","$","%","^","&","*","(",")","[","]","{","}","<",">"];
               // $arr2= explode(" ",$arr1);
               // str_replace($item,"",$arr2);
-
-
+              // $arr = ["id" => $id_doc, 'array' => $arr2];
 
               //check DB
               // $kata = new Kata($this->conn);
-              // $kata->checkDB(['id' => 20, 'arrya' => $att]);
+              // $kata->checkDB($arr);
               // return mysqli_query($this->conn, $sql);
           } else {
             echo 'gagal memasukan database';

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 02, 2019 at 11:03 AM
+-- Generation Time: Apr 04, 2019 at 11:27 AM
 -- Server version: 5.7.22-0ubuntu0.17.10.1
 -- PHP Version: 7.1.17-0ubuntu0.17.10.1
 
@@ -46,8 +46,20 @@ INSERT INTO `algoritma` (`id_algoritma`, `nama_algoritma`) VALUES
 
 CREATE TABLE `document` (
   `id` int(11) NOT NULL,
-  `document` int(11) NOT NULL
+  `document` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `document`
+--
+
+INSERT INTO `document` (`id`, `document`) VALUES
+(1, 'Cokcokc'),
+(2, 'Cokcokc'),
+(3, 'Cokcokc'),
+(4, 'Cokcokc'),
+(5, 'Cokcokc'),
+(6, 'Cokcokc');
 
 -- --------------------------------------------------------
 
@@ -74,7 +86,8 @@ CREATE TABLE `kata` (
   `kata_dasar_2` text,
   `waktu_1` text,
   `waktu_2` text,
-  `status` tinyint(1) NOT NULL DEFAULT '0'
+  `status_1` tinyint(1) DEFAULT '0',
+  `status_2` tinyint(4) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -119,7 +132,7 @@ ALTER TABLE `algoritma`
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `kata`
 --
