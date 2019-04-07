@@ -34,26 +34,28 @@
             $frekuensi =0;  			//misal frekuensi kata yg sama muncul berapa kali
             $sama = 0;					//indikator waktu pengecekan (0=sama, 1=beda)
             $temp = 0;					//buat simpen urutan array keberapa kata di $arr yang gaada di DB
-        for($i=0; $i< count($arr); $i++){		
-	        for($j=0; $j< count($db); $j++){
+            for($i=0; $i< count($arr); $i++){		
+	            for($j=0; $j< count($db); $j++){
 		
-		    if($arr[$i]==$db[$j]){			//membandingkan isi di array dokumen dan yang ada di DB
+		        if($arr[$i]==$db[$j]){			//membandingkan isi di array dokumen dan yang ada di DB
 			        //kalau sama, tarik id dokumen, sama id kata
 			        //echo $j;					//disini $j ini index dari array kata sama, kl penerapan yg asli yg diambil id dari kata yg sama trus dimasukin tabel document_kata
-			$frekuensi += 1;			//parameter yang dipake i buat index dokumen, j buat indeks kata
-			break;
-		    }
-		    else{
-			    $sama = 1;				
-			    $temp = $i;					//buat menyimpan index dr array dokumen yang kata2nya tidak ada di DB
-		    }
-	        }
+			        $frekuensi += 1;			//parameter yang dipake i buat index dokumen, j buat indeks kata
+			    break;
+		        }
+		        else{
+			        $sama = 1;				
+			        $temp = $i;					//buat menyimpan index dr array dokumen yang kata2nya tidak ada di DB
+		        }
+	            }
 	        if ($sama==1){
-		        $db[]= $arr[$temp];				//aslinya ini fungsi nambah kata di tabel kata
-		        $temp = 0;						
-		        $sama = 0;						//reset
+		    $db[]= $arr[$temp];				//aslinya ini fungsi nambah kata di tabel kata
+		    $temp = 0;						
+		    $sama = 0;						//reset
 	        }
-        }
+            }
+
+
         }
 
         public function create($arr){
