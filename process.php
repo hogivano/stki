@@ -1,11 +1,18 @@
 <?php
 include './ehcs.php';
 $ehcs = new Ehcs();
-if ($ehcs->checkStem('nyanyi')){
-  echo 'true';
-} else {
-  echo 'false';
-}
+// if ($ehcs->checkStem('nyanyi')){
+//   echo 'true||';
+// } else {
+//   echo 'false';
+// }
 
-echo $ehcs->checkParticle("blah")['stem'];
+$stemming = $ehcs->deleteDerivationPeC1erC2("mengutuk");
+echo $stemming['stem'];
+echo "\n";
+if ($stemming['root']) {
+	echo "true";
+} else{
+	echo "false";
+}
 ?>
