@@ -5,6 +5,13 @@
     <title></title>
   </head>
   <body>
-
+    <?php
+    include './Controller/ReadController.php';
+    foreach ($kata as $i) {
+      # code...
+      echo $i['kata'];
+      echo "\n";
+    }
+    ?>
   </body>
 </html>

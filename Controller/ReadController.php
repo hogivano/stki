@@ -1,14 +1,9 @@
 <?php
-include '../connection.php';
+define('_root',$_SERVER['DOCUMENT_ROOT']);
+include(_root.'/db_connection.php');
 
-class ReadController {
-  public function readDocument(){
-
-  }
-
-  public function readKata(){
-
-  }
-}
+$sql = "SELECT * FROM kata";
+$cek = mysqli_query($conn, $sql);
+$kata = mysqli_fetch_all($cek, MYSQLI_ASSOC);
 
 ?>

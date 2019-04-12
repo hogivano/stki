@@ -7,14 +7,14 @@
         }
 
         public function create($arr){
-            $title = $arr['id_kata'];
-            $deskripsi = $arr['deskripsi'];
-            $sql = "INSERT INTO artikel (title, deskripsi) VALUES ('$title', '$deskripsi')";
+            $id = $arr['id_kata'];
+            $frekuensi = $arr['frekuensi'];
+            $sql = "INSERT INTO document_kata (id_kata, frekuensi) VALUES ('$id', '$frekuensi')";
             return mysqli_query($this->conn, $sql);
         }
 
         public function updateFrekuensi($arr){
-          
+
         }
 
         public function read(){

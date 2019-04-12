@@ -3,7 +3,7 @@
 
   $servername = "localhost";
   $username = "root";
-  $password = "";
+  $password = "op";
   $dbname = "stki";
 
   $conn = mysqli_connect($servername, $username, $password);
@@ -12,6 +12,6 @@
   if($conn->connect_error){
     die("Connection failed: ".$conn->connect_error);
   } else {
-    echo "DB Connected";
+    // echo "DB Connected";
   }
 ?>

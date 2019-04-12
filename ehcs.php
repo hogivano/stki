@@ -3878,12 +3878,12 @@ class Ehcs {
   //turn 8
   public function checkDerivationPrefix($stem){
     if (substr($stem, 0, 3) == "ber" && (substr($stem, 3, 1) == "a" || substr($stem, 3, 1) == "i" || substr($stem, 3, 1) == "u" ||
-      substr($stem, 3, 1) == "e" || substr($stem, 3, 1) == "o")){
+      substr($stem, 3, 1) == "e" || substr($stem, 3, 1) == "o")){ //1table
       return $this->deleteDerivationBerV($stem);
     } else if (substr($stem, 0, 3) == "ber" && (substr($stem, 3, 1) != "a" && substr($stem, 3, 1) != "i" && substr($stem, 3, 1) != "u" &&
-      substr($stem, 3, 1) != "e" && substr($stem, 3, 1) != "o" && substr($stem, 3, 1) != "r") && substr($stem, 5, 2) != "er"){
+      substr($stem, 3, 1) != "e" && substr($stem, 3, 1) != "o" && substr($stem, 3, 1) != "r") && substr($stem, 5, 2) != "er"){ //2table
       return $this->deleteDerivationBerCap($stem);
-    } else if ($stem == "belajar"){
+    } else if ($stem == "belajar"){ //3table
       return $this->deleteDerivationBelajar($stem);
     } else if (substr($stem, 0, 2) == "be") {
       return $this->deleteDerivationBeC1C2($stem);
@@ -3905,52 +3905,52 @@ class Ehcs {
         return $this->deleteDerivationmenyV($stem);
     }else if (substr($stem, 0,4 )== "memp") {
         return $this->deleteDerivationmempA($stem);
-    }else if (substr($stem, 0, 3) == "per" && (substr($stem, 3,1) == "a" || substr($stem, 3,1) == "i" || substr($stem, 3,1) == "u" || 
+    }else if (substr($stem, 0, 3) == "per" && (substr($stem, 3,1) == "a" || substr($stem, 3,1) == "i" || substr($stem, 3,1) == "u" ||
       substr($stem, 3,1) == "e" || substr($stem, 3,1) == "o")) {
       return $this->deleteDerivationPerV($stem);
-    } else if (substr($stem, 0,3)=="per" && (substr($stem,3,1)!="a" && substr($stem,3,1)!="i" && substr($stem,3,1)!="u" && substr($stem,3,1)!="e" 
+    } else if (substr($stem, 0,3)=="per" && (substr($stem,3,1)!="a" && substr($stem,3,1)!="i" && substr($stem,3,1)!="u" && substr($stem,3,1)!="e"
       && substr($stem,3,1)!="o" && substr($stem,3,1)!="r") && substr($stem,5,2)!="er") {
       return $this->deleteDerivationPerCAP($stem);
-    } else if (substr($stem,0,3)=="per" && (substr($stem, 3,1)!="a" && substr($stem, 3,1)!="i" && substr($stem, 3,1)!="u" 
-      && substr($stem, 3,1)!="e" && substr($stem, 3,1)!="o") && substr($stem,5,2)=="er" && (substr($stem,7,1)=="a" && substr($stem,7,1)=="i" 
+    } else if (substr($stem,0,3)=="per" && (substr($stem, 3,1)!="a" && substr($stem, 3,1)!="i" && substr($stem, 3,1)!="u"
+      && substr($stem, 3,1)!="e" && substr($stem, 3,1)!="o") && substr($stem,5,2)=="er" && (substr($stem,7,1)=="a" && substr($stem,7,1)=="i"
       && substr($stem,7,1)=="u" && substr($stem,7,1)=="e" && substr($stem,7,1)=="o")) {
       return $this->deleteDerivationPerCAerV($stem);
-    } else if (substr($stem,0,3)=="pem" && (substr($stem,3,1)=="b" || substr($stem,3,1)=="f" || (substr($stem,3,1)=="a" || substr($stem,3,1)=="i" 
+    } else if (substr($stem,0,3)=="pem" && (substr($stem,3,1)=="b" || substr($stem,3,1)=="f" || (substr($stem,3,1)=="a" || substr($stem,3,1)=="i"
       || substr($stem,3,1)=="u" || substr($stem,3,1)=="e" || substr($stem,3,1)=="o"))) {
       return $this->deleteDerivationPemBFV($stem);
-    } else if (substr($stem,0,3)=="pem" && ((substr($stem,3,1)=="r" && (substr($stem,4,1)=="a" || substr($stem,4,1)=="i" || substr($stem,4,1)=="u" 
-      || substr($stem,4,1)=="e" || substr($stem,4,1)=="o")) || (substr($stem,3,1)=="a" || substr($stem,3,1)=="i" || substr($stem,3,1)=="u" 
+    } else if (substr($stem,0,3)=="pem" && ((substr($stem,3,1)=="r" && (substr($stem,4,1)=="a" || substr($stem,4,1)=="i" || substr($stem,4,1)=="u"
+      || substr($stem,4,1)=="e" || substr($stem,4,1)=="o")) || (substr($stem,3,1)=="a" || substr($stem,3,1)=="i" || substr($stem,3,1)=="u"
       || substr($stem,3,1)=="e" || substr($stem,3,1)=="o")) ) {
       return $this->deleteDerivationPemRVV($stem);
     } else if (substr($stem,0,3)=="pen" && (substr($stem,3,1)=="c" || substr($stem,3,1)=="d" || substr($stem,3,1)=="j" || substr($stem,3,1)=="z")) {
       return $this->deleteDerivationPenCDJZ($stem);
-    } else if (substr($stem,0,3)=="pen" && (substr($stem,3,1)=="a" || substr($stem,3,1)=="i" || substr($stem,3,1)=="u" || substr($stem,3,1)=="e" || 
+    } else if (substr($stem,0,3)=="pen" && (substr($stem,3,1)=="a" || substr($stem,3,1)=="i" || substr($stem,3,1)=="u" || substr($stem,3,1)=="e" ||
       substr($stem,3,1)=="o")) {
       return $this->deleteDerivationPenV($stem);
-    } else if (substr($stem,0,4)=="peng" && (substr($stem,4,1)!="a" && substr($stem,4,1)!="i" && substr($stem,4,1)!="u" && substr($stem,4,1)!="e" 
+    } else if (substr($stem,0,4)=="peng" && (substr($stem,4,1)!="a" && substr($stem,4,1)!="i" && substr($stem,4,1)!="u" && substr($stem,4,1)!="e"
       && substr($stem,4,1)!="o")) {
       return $this->deleteDerivationPengC($stem);
-    } else if (substr($stem,0,4)=="peng" && (substr($stem,4,1)=="a" || substr($stem,4,1)=="i" || substr($stem,4,1)=="u" || substr($stem,4,1)=="e" 
+    } else if (substr($stem,0,4)=="peng" && (substr($stem,4,1)=="a" || substr($stem,4,1)=="i" || substr($stem,4,1)=="u" || substr($stem,4,1)=="e"
       || substr($stem,4,1)=="o")) {
       return $this->deleteDerivationPengV($stem);
-    } else if (substr($stem,0,4)=="peny" && (substr($stem,4,1)=="a" || substr($stem,4,1)=="i" || substr($stem,4,1)=="u" || substr($stem,4,1)=="e" 
+    } else if (substr($stem,0,4)=="peny" && (substr($stem,4,1)=="a" || substr($stem,4,1)=="i" || substr($stem,4,1)=="u" || substr($stem,4,1)=="e"
       || substr($stem,4,1)=="o")) {
       return $this->deleteDerivationPenyV($stem);
-    } else if (substr($stem,0,3)=="pel" && (substr($stem,3,1)=="a" || substr($stem,3,1)=="i" || substr($stem,3,1)=="u" || substr($stem,3,1)=="e" || 
+    } else if (substr($stem,0,3)=="pel" && (substr($stem,3,1)=="a" || substr($stem,3,1)=="i" || substr($stem,3,1)=="u" || substr($stem,3,1)=="e" ||
       substr($stem,3,1)=="o")) {
       return $this->deleteDerivationPelV($stem);
-    } else if (substr($stem,0,2)=="pe" && (substr($stem, 2,1)!="a" && substr($stem, 2,1)!="i" && substr($stem, 2,1)!="u" 
+    } else if (substr($stem,0,2)=="pe" && (substr($stem, 2,1)!="a" && substr($stem, 2,1)!="i" && substr($stem, 2,1)!="u"
       && substr($stem, 2,1)!="e" && substr($stem, 2,1)!="o" && substr($stem,2,1)!="r" && substr($stem,2,1)!="w" && substr($stem,2,1)!="y"
-      && substr($stem,2,1)!="l" && substr($stem,2,1)!="m" && substr($stem,2,1)!="n") && (substr($stem,5,1)=="a" || substr($stem,5,1)=="i" || 
+      && substr($stem,2,1)!="l" && substr($stem,2,1)!="m" && substr($stem,2,1)!="n") && (substr($stem,5,1)=="a" || substr($stem,5,1)=="i" ||
       substr($stem,5,1)=="u" || substr($stem,5,1)=="e" || substr($stem,5,1)=="o")) {
       return $this->deleteDerivationPeCerV($stem);
-    } else if (substr($stem,0,2)=="pe" && (substr($stem, 2,1)!="a" && substr($stem, 2,1)!="i" && substr($stem, 2,1)!="u" 
+    } else if (substr($stem,0,2)=="pe" && (substr($stem, 2,1)!="a" && substr($stem, 2,1)!="i" && substr($stem, 2,1)!="u"
       && substr($stem, 2,1)!="e" && substr($stem, 2,1)!="o" && substr($stem,2,1)!="r" && substr($stem,2,1)!="w" && substr($stem,2,1)!="y"
       && substr($stem,2,1)!="l" && substr($stem,2,1)!="m" && substr($stem,2,1)!="n") && substr($stem,3,1)!="er") {
       return $this->deleteDerivationPeCP($stem);
     } else if (substr($stem,0,3)=="ter" && substr($stem,3,1)!="r" && (substr($stem,4,2)=="er")) {
       return $this->deleteDerivationTerC1erC2($stem);
-    } else if (substr($stem,0,2)=="pe" && (substr($stem,2,1)!="r" && substr($stem,2,1)!="w" && substr($stem,2,1)!="y" && substr($stem,2,1)!="l" 
+    } else if (substr($stem,0,2)=="pe" && (substr($stem,2,1)!="r" && substr($stem,2,1)!="w" && substr($stem,2,1)!="y" && substr($stem,2,1)!="l"
       && substr($stem,2,1)!="m" && substr($stem,2,1)!="n") && substr($stem,3,2)=="er") {
       return $this->deleteDerivationPeC1erC2($stem);
     }
@@ -4137,7 +4137,7 @@ class Ehcs {
   }
 
     public  function deleteDerivationmemBFV($stem){
-          $stemTemp=$stem; 
+          $stemTemp=$stem;
           $stem = substr($stem, 3, strlen($stem));
           if ($this->checkStem($stem)){
             return ['root' => true,'stem' => $stem];
@@ -4153,12 +4153,12 @@ public  function deleteDerivationmemPE($stem){
             return ['root' => true,'stem' => $stem];
           } else {
             return ['root' => false, 'stem' => $stemTemp];
-          } 
+          }
 
   }
 public function deleteDerivationmemrVV($stem){
                     $stemTemp=$stem;
-  
+
                     $stem = substr($stem, 2, strlen($stem));
                         if ($this->checkStem($stem)){
                             return ['root' => true,'stem' => $stem];
@@ -4169,7 +4169,7 @@ public function deleteDerivationmemrVV($stem){
                             }else{
                                 return ['root' => false, 'stem' => $stemTemp];
                             }
-                        }      
+                        }
 }
 
 public function deleteDerivationmenCDJSZ($stem){
@@ -4180,12 +4180,12 @@ public function deleteDerivationmenCDJSZ($stem){
           } else {
             return ['root' => false, 'stem' => $stemTemp];
           }
-        
-    
+
+
 }
 
 public function deleteDerivationmenVtV($stem){
-                $stemTemp=$stem;        
+                $stemTemp=$stem;
                 $stem = substr($stem, 1, strlen($stem));
                         if ($this->checkStem($stem)){
                             return ['root' => true,'stem' => $stem];
@@ -4196,10 +4196,10 @@ public function deleteDerivationmenVtV($stem){
                             }else{
                                 return ['root' => false, 'stem' => $stemTemp];
                             }
-                        } 
-            
-   
-        
+                        }
+
+
+
 }
 
 public function deleteDerivationmengGHQK($stem){
@@ -4209,8 +4209,8 @@ public function deleteDerivationmengGHQK($stem){
                     return ['root' => true,'stem' => $stem];
                 } else {
                          return ['root' => false, 'stem' => $stemTemp];
-                } 
-    
+                }
+
 }
 
 public function deleteDerivationmengVkV($stem){
@@ -4228,11 +4228,11 @@ public function deleteDerivationmengVkV($stem){
                                 return ['root' => true,'stem' => $stem];
                             } else {
                                 return ['root' => false, 'stem' => $stemTemp];
-                        }    
+                        }
                     }
 
                 }
-                    
+
 }
 
 public function deleteDerivationmenyV($stem){
@@ -4242,9 +4242,9 @@ public function deleteDerivationmenyV($stem){
                     return ['root' => true,'stem' => $stem];
                 } else {
                          return ['root' => false, 'stem' => $stemTemp];
-                } 
-            
-        
+                }
+
+
 }
 
 public function deleteDerivationmempA($stem){
@@ -4256,8 +4256,8 @@ public function deleteDerivationmempA($stem){
                 }else{
                     return ['root'=>false,'stem'=>$stemTemp];
                 }
-              }      
-    
+              }
+
 }
 
 public function deleteDerivationPerV($stem)
@@ -4290,7 +4290,7 @@ public function deleteDerivationPerV($stem)
   public function deleteDerivationPerCAerV($stem)
   {
     $stemTemp=$stem;
-    $stem = substr($stem,3,strlen($stem));    
+    $stem = substr($stem,3,strlen($stem));
     if ($this->checkStem($stem)) {
       return ['root'=>true, 'stem'=>$stem];
     } else{
@@ -4303,7 +4303,7 @@ public function deleteDerivationPerV($stem)
     $stemTemp=$stem;
     $stem = substr($stem,3,strlen($stem));
     if ($this->checkStem($stem)) {
-      return ['root'=>true, 'stem'=>$stem];    
+      return ['root'=>true, 'stem'=>$stem];
     } else{
       return ['root'=>false, 'stem'=>$stemTemp];
     }
@@ -4339,7 +4339,7 @@ public function deleteDerivationPerV($stem)
   public function deleteDerivationPenV($stem)
   {
     $stemTemp=$stem;
-    $stem = substr($stem,2,strlen($stem));    
+    $stem = substr($stem,2,strlen($stem));
     if ($this->checkStem($stem)) {
       return ['root'=>true, 'stem'=>$stem];
     } else{
@@ -4385,7 +4385,7 @@ public function deleteDerivationPerV($stem)
           return ['root'=>false, 'stem'=>$stemTemp];
         }
       }
-    }    
+    }
   }
 
   public function deleteDerivationPenyV($stem)
@@ -4427,7 +4427,7 @@ public function deleteDerivationPerV($stem)
 
   public function deleteDerivationPeCP($stem)
   {
-    $stemTemp=$stem; 
+    $stemTemp=$stem;
     $stem = substr($stem,2,strlen($stem));
     if ($this->checkStem($stem)) {
       return ['root'=>true, 'stem'=>$stem];
@@ -4520,6 +4520,35 @@ public function deleteDerivationPerV($stem)
             if ($result['root']){
               return $result;
             } else {
+              $stem = $result['stem'];
+
+              //langkah 5
+              $result = $this->checkProssesivePronoun($stem);
+              if ($result['root']){
+                return $result;
+              } else {
+                $stem = $result['stem'];
+
+                //langkah 6
+                $result = $this->checkNotCombineSurfix($stem);
+                if ($result['root']){
+                  return $result;
+                } else {
+                  $stem = $result['stem'];
+
+                  //langkah 7
+                  $result = $this->checkDerivationSurfix($stem);
+                  if ($result['root']){
+                    return $result;
+                  } else {
+                    $stem = $result['stem'];
+
+                    $result = $this->checkDerivationPrefix($stem);
+                    return $result;
+                  }
+                }
+
+              }
             }
           }
         }
