@@ -101,7 +101,7 @@ if (!$query) {
 
 echo'<br><p class="profile-description">Rata - Rata Waktu yang digunakan </p>';
 
-echo '<table id="example" class="display" style="width:100%"">
+echo '<table id="example" class="display" ">
         <thead>
             <tr>
                 <th>Id</th>
@@ -158,14 +158,17 @@ if (!$conn) {
 
 $sql = 'SELECT id, kata, kata_dasar_2, waktu_2, status 
         FROM kata';
+
+$rata = 'SELECT AVG waktu_1 FROM stki';
         
 $query = mysqli_query($conn, $sql);
+$rataquery = mysqli_query($conn, $rata);
 
 if (!$query) {
     die ('SQL Error: ' . mysqli_error($conn));
 }
 
-echo'<br><p class="profile-description">Rata - Rata Waktu yang digunakan </p>';
+echo'<br><p class="profile-description">Rata - Rata Waktu yang digunakan = '.$rataquery.'</p>';
 
 echo '<table id="example2" class="display" style="width:100%"">
         <thead>
