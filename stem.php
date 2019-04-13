@@ -16,6 +16,9 @@
   <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="assets/css/blk-design-system.css?v=1.0.0" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="Datatables/datatables.css">
+  <link rel="stylesheet" type="text/css" href="Datatables/dataTables.bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="Datatables/css/jquery.dataTables.min.css">
 
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
@@ -31,7 +34,7 @@
     }
     ?>
 
-  
+
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
     <div class="container">
@@ -75,145 +78,63 @@
             <h5 class="text-on-back">01</h5>
             <p class="profile-description">Hasil Stemming dengan Algoritma Tala</p>
           </div>
-          <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-            <div class="card card-coin card-plain">
-              <div class="card-header">
-                <img src="ssets/img/mike.jpg" class="img-center img-fluid rounded-circle">
-                <h4 class="title">Transactions</h4>
-              </div>
-              <div class="card-body">
-                <ul class="nav nav-tabs nav-tabs-primary justify-content-center">
-                  <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#linka">
-                      Wallet
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#linkb">
-                      Send
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#linkc">
-                      News
-                    </a>
-                  </li>
-                </ul>
-                <div class="tab-content tab-subcategories">
-                  <div class="tab-pane active" id="linka">
-                    <div class="table-responsive">
-                      <table class="table tablesorter " id="plain-table">
-                        <thead class=" text-primary">
-                          <tr>
-                            <th class="header">
-                              COIN
-                            </th>
-                            <th class="header">
-                              AMOUNT
-                            </th>
-                            <th class="header">
-                              VALUE
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              BTC
-                            </td>
-                            <td>
-                              7.342
-                            </td>
-                            <td>
-                              48,870.75 USD
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              ETH
-                            </td>
-                            <td>
-                              30.737
-                            </td>
-                            <td>
-                              64,53.30 USD
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              XRP
-                            </td>
-                            <td>
-                              19.242
-                            </td>
-                            <td>
-                              18,354.96 USD
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="tab-pane" id="linkb">
-                    <div class="row">
-                      <label class="col-sm-3 col-form-label">Pay to</label>
-                      <div class="col-sm-9">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="e.g. 1Nasd92348hU984353hfid">
-                          <span class="form-text">Please enter a valid address.</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <label class="col-sm-3 col-form-label">Amount</label>
-                      <div class="col-sm-9">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="1.587">
-                        </div>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-simple btn-primary btn-icon btn-round float-right"><i class="tim-icons icon-send"></i></button>
-                  </div>
-                  <div class="tab-pane" id="linkc">
-                    <div class="table-responsive">
-                      <table class="table tablesorter " id="plain-table">
-                        <thead class=" text-primary">
-                          <tr>
-                            <th class="header">
-                              Latest Crypto News
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              The Daily: Nexo to Pay on Stable...
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Venezuela Begins Public of Nation...
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              PR: BitCanna – Dutch Blockchain...
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="col-lg-12">
+              <?php
+$db_host = 'localhost'; // Nama Server
+$db_user = 'root'; // User Server
+$db_pass = ''; // Password Server
+$db_name = 'stki'; // Nama Database
+
+$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+if (!$conn) {
+    die ('Gagal terhubung MySQL: ' . mysqli_connect_error());   
+}
+
+$sql = 'SELECT id, kata, kata_dasar_1, waktu_1, status 
+        FROM kata';
+        
+$query = mysqli_query($conn, $sql);
+
+if (!$query) {
+    die ('SQL Error: ' . mysqli_error($conn));
+}
+
+echo'<br><p class="profile-description">Rata - Rata Waktu yang digunakan </p>';
+
+echo '<table id="example" class="display" style="width:100%"">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Kata</th>
+                <th>Kata Dasar</th>
+                <th>Waktu</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>';
+        
+while ($row = mysqli_fetch_array($query))
+{
+    echo '<tr>
+            <td>'.$row['id'].'</td>
+            <td>'.$row['kata'].'</td>
+            <td>'.$row['kata_dasar_1'].'</td>
+            <td>'.$row['waktu_1'].'</td>
+            <td>'.$row['status'].'</td>       
+        </tr>';
+}
+echo '
+    </tbody>
+</table>';
+?>
+
           </div>
         </div>
       </div>
     </div>
+  </div>
 
     <div class="section">
-      <img src="assets/img/dots.png" class="dots">
       <img src="assets/img/path4.png" class="path">
       <div class="container align-items-center">
         <div class="row">
@@ -222,156 +143,69 @@
             <h5 class="text-on-back">02</h5>
             <p class="profile-description">Hasil Stemming dengan Algoritma EHCS</p>
           </div>
-          <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-            <div class="card card-coin card-plain">
-              <div class="card-header">
-                <img src="ssets/img/mike.jpg" class="img-center img-fluid rounded-circle">
-                <h4 class="title">Transactions</h4>
-              </div>
-              <div class="card-body">
-                <ul class="nav nav-tabs nav-tabs-primary justify-content-center">
-                  <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#linka">
-                      Wallet
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#linkb">
-                      Send
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#linkc">
-                      News
-                    </a>
-                  </li>
-                </ul>
-                <div class="tab-content tab-subcategories">
-                  <div class="tab-pane active" id="linka">
-                    <div class="table-responsive">
-                      <table class="table tablesorter " id="plain-table">
-                        <thead class=" text-primary">
-                          <tr>
-                            <th class="header">
-                              COIN
-                            </th>
-                            <th class="header">
-                              AMOUNT
-                            </th>
-                            <th class="header">
-                              VALUE
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              BTC
-                            </td>
-                            <td>
-                              7.342
-                            </td>
-                            <td>
-                              48,870.75 USD
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              ETH
-                            </td>
-                            <td>
-                              30.737
-                            </td>
-                            <td>
-                              64,53.30 USD
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              XRP
-                            </td>
-                            <td>
-                              19.242
-                            </td>
-                            <td>
-                              18,354.96 USD
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="tab-pane" id="linkb">
-                    <div class="row">
-                      <label class="col-sm-3 col-form-label">Pay to</label>
-                      <div class="col-sm-9">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="e.g. 1Nasd92348hU984353hfid">
-                          <span class="form-text">Please enter a valid address.</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <label class="col-sm-3 col-form-label">Amount</label>
-                      <div class="col-sm-9">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="1.587">
-                        </div>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-simple btn-primary btn-icon btn-round float-right"><i class="tim-icons icon-send"></i></button>
-                  </div>
-                  <div class="tab-pane" id="linkc">
-                    <div class="table-responsive">
-                      <table class="table tablesorter " id="plain-table">
-                        <thead class=" text-primary">
-                          <tr>
-                            <th class="header">
-                              Latest Crypto News
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              The Daily: Nexo to Pay on Stable...
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Venezuela Begins Public of Nation...
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              PR: BitCanna – Dutch Blockchain...
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="col-lg-12">
+           
+  <?php
+$db_host = 'localhost'; // Nama Server
+$db_user = 'root'; // User Server
+$db_pass = ''; // Password Server
+$db_name = 'stki'; // Nama Database
+
+$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+if (!$conn) {
+    die ('Gagal terhubung MySQL: ' . mysqli_connect_error());   
+}
+
+$sql = 'SELECT id, kata, kata_dasar_2, waktu_2, status 
+        FROM kata';
+        
+$query = mysqli_query($conn, $sql);
+
+if (!$query) {
+    die ('SQL Error: ' . mysqli_error($conn));
+}
+
+echo'<br><p class="profile-description">Rata - Rata Waktu yang digunakan </p>';
+
+echo '<table id="example2" class="display" style="width:100%"">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Kata</th>
+                <th>Kata Dasar</th>
+                <th>Waktu</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>';
+        
+while ($row = mysqli_fetch_array($query))
+{
+    echo '<tr>
+            <td>'.$row['id'].'</td>
+            <td>'.$row['kata'].'</td>
+            <td>'.$row['kata_dasar_2'].'</td>
+            <td>'.$row['waktu_2'].'</td>
+            <td>'.$row['status'].'</td>       
+        </tr>';
+}
+echo '
+    </tbody>
+</table>';
+?>
+
+
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h1 class="title">Algoritma Stemming• Tala & EHCS</h1>
-          </div>
 
-        </div>
-      </div>
-    </footer>
   </div>
   <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="assets/js/jquery-3.3.1.js" type="text/javascript"></script>
   <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
@@ -387,7 +221,21 @@
   <!-- Black Dashboard DEMO methods, don't include it in your project! -->
   <script src="assets/demo/demo.js"></script>
   <!-- Control Center for Black UI Kit: parallax effects, scripts for the example pages etc -->
+  <script type="text/javascript" charset="utf8" src="Datatables/datatables.js"></script>
+  <script type="text/javascript" charset="utf8" src="Datatables/js/jquery.dataTables.min.js"></script>
   <script src="assets/js/blk-design-system.min.js?v=1.0.0" type="text/javascript"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('#example').DataTable();
+  });
+</script>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('#example2').DataTable();
+  });
+</script>
+
 </body>
 
 </html>
