@@ -97,8 +97,18 @@
         }
 
         public function delete($id){
-            $sql = "DELETE FROM artikel WHERE id = '$id'";
-            return mysqli_query($this->conn, $sql);
+            $sql = "DELETE FROM document WHERE id = '$id'";
+            $sqlDK = "DELETE FROM document_kata WHERE id_document = '$id'";
+            $query = mysqli_query($this->conn, $sql);
+            $queryDK = mysqli_query($this->conn, $sqlDK);
+
+            if ($query && $queryDK){
+              $this->conn->close();
+              header("Location: /list-document.php");
+              die();
+            } else {
+              echo "Gagal menghapus";
+            }
         }
     }
 ?>

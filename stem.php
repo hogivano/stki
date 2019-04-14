@@ -143,6 +143,7 @@ echo '<table id="example" class="display" ">
                 <th>Kata Dasar</th>
                 <th>Waktu</th>
                 <th>Status</th>
+                <th>Frekuensi</th>
             </tr>
         </thead>
         <tbody>';
@@ -155,12 +156,22 @@ while ($row = mysqli_fetch_array($query))
     } else if ($row['status_1'] == 0){
       $status = 'gagal';
     }
+
+    $id = $row['id'];
+    $q = "SELECT SUM(frekuensi) FROM document_kata WHERE id_kata='$id'";
+    $cek = mysqli_query($conn, $q);
+    $frekuensi = 0;
+    if ($cek){
+      $frekuensi =  mysqli_fetch_array($cek);
+    }
+
     echo '<tr>
             <td>'.$row['id'].'</td>
             <td>'.$row['kata'].'</td>
             <td>'.$row['kata_dasar_1'].'</td>
             <td>'.$row['waktu_1'].'</td>
             <td>'.$status.'</td>
+            <td>'.$frekuensi['SUM(frekuensi)'].'</td>
         </tr>';
 }
 echo '
@@ -231,6 +242,7 @@ echo '<table id="example2" class="display" style="width:100%">
                 <th>Kata Dasar</th>
                 <th>Waktu</th>
                 <th>Status</th>
+                <th>Frekuensi</th>
             </tr>
         </thead>
         <tbody>';
@@ -243,12 +255,21 @@ while ($row = mysqli_fetch_array($query))
   } else if ($row['status_2'] == 0){
     $status = 'gagal';
   }
+  $id = $row['id'];
+  $q = "SELECT SUM(frekuensi) FROM document_kata WHERE id_kata='$id'";
+  $cek = mysqli_query($conn, $q);
+  $frekuensi = 0;
+  if ($cek){
+    $frekuensi =  mysqli_fetch_array($cek);
+  }
+
     echo '<tr>
             <td>'.$row['id'].'</td>
             <td>'.$row['kata'].'</td>
             <td>'.$row['kata_dasar_2'].'</td>
             <td>'.$row['waktu_2'].'</td>
             <td>'.$status.'</td>
+            <td>'.$frekuensi['SUM(frekuensi)'].'</td>
         </tr>';
 }
 echo '

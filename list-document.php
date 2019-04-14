@@ -95,6 +95,7 @@
             </div>
           </div>
           <div class="col-lg-12">
+
               <?php
 $db_host = 'localhost'; // Nama Server
 $db_user = 'root'; // User Server
@@ -121,6 +122,7 @@ echo '<table id="example" class="display">
             <tr>
                 <th>Id</th>
                 <th>Dokumen</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>';
@@ -130,6 +132,10 @@ while ($row = mysqli_fetch_array($query))
     echo '<tr>
             <td>'.$row['id'].'</td>
             <td>'.$row['document'].'</td>
+            <td><form class="" action="./Controller/DeleteController.php" style="display:inline" method="post">
+              <input type="text" hidden="hidden" name="id" value="'. $row['id'] .'">
+              <button type="submit" class="btn btn-primary" name="button">Delete</button>
+            </form></td>
         </tr>';
 }
 echo '
