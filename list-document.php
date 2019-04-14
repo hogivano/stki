@@ -41,6 +41,7 @@
 
     .dataTables_wrapper .dataTables_paginate .paginate_button.previous.disabled {
       color: white !important;
+
     }
   </style>
 </head>
@@ -80,21 +81,18 @@
     </div>
   </nav>
   <!-- End Navbar -->
-  <div class="wrapper">
-    <div class="page-header">
+  <div class="wrapper" style="margin-bottom: 30px;">
+    <div class="page-header" style="max-height: unset !important;">
       <img src="assets/img/dots.png" class="dots">
       <img src="assets/img/path4.png" class="path">
       <div class="container align-items-center">
-        <div class="">
-            <a type="button" href="/document.php" class="btn btn-light" name="button">Baru</a>
-            <a type="button" class="btn btn-light" href="/list-document.php" name="button">List Dokumen</a>
-            <a type="button" class="btn btn-light" href="/process.php" name="button">Proses</a>
-        </div>
         <div class="row">
           <div class="col-lg-6 col-md-6">
-            <h1 class="profile-title text-left">Tala</h1>
-            <h5 class="text-on-back">01</h5>
-            <p class="profile-description">Hasil Stemming dengan Algoritma Tala</p>
+            <div class="profile-description" style="margin-bottom: 20px;">
+              <a type="button" href="/document.php" class="btn btn-light" name="button">Baru</a>
+              <a type="button" class="btn btn-light" href="/stem.php" name="button">Stem</a>
+              <a type="button" class="btn btn-light" href="/process.php" name="button">Proses</a>
+            </div>
           </div>
           <div class="col-lg-12">
               <?php
@@ -108,59 +106,30 @@ if (!$conn) {
     die ('Gagal terhubung MySQL: ' . mysqli_connect_error());
 }
 
-$sql = 'SELECT id, kata, kata_dasar_1, waktu_1, status_1
-        FROM kata';
-
-$rataWaktuTala = 'SELECT AVG(waktu_1) FROM kata';
-
-$rataStatus = 'SELECT AVG(status_1) FROM kata';
+$sql = 'SELECT *
+        FROM document';
 
 $query = mysqli_query($conn, $sql);
-$queryWaktu = mysqli_query($conn, $rataWaktuTala);
-$queryStatus = mysqli_query($conn, $rataStatus);
 
 if (!$query) {
     die ('SQL Error: ' . mysqli_error($conn));
 }
-if (!$queryWaktu) {
-    die ('SQL Error: ' . mysqli_error($conn));
-}
-if (!$queryStatus) {
-    die ('SQL Error: ' . mysqli_error($conn));
-}
 
-$rowRataWaktu = mysqli_fetch_array($queryWaktu);
-$rowRataStatus = mysqli_fetch_array($queryStatus);
 
-echo'<br><p class="profile-description">Rata - Rata Waktu yang digunakan = ' . number_format($rowRataWaktu['AVG(waktu_1)'], 6, '.', '') .'</p>';
-echo'<br><p class="profile-description">Rata - Rata Keberhasilan = ' . $rowRataStatus['AVG(status_1)'] * 100 .'%</p>';
-
-echo '<table id="example" class="display" ">
+echo '<table id="example" class="display">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Kata</th>
-                <th>Kata Dasar</th>
-                <th>Waktu</th>
-                <th>Status</th>
+                <th>Dokumen</th>
             </tr>
         </thead>
         <tbody>';
 
 while ($row = mysqli_fetch_array($query))
 {
-    $status = '';
-    if ($row['status_1'] == 1){
-      $status = 'berhasil';
-    } else if ($row['status_1'] == 0){
-      $status = 'gagal';
-    }
     echo '<tr>
             <td>'.$row['id'].'</td>
-            <td>'.$row['kata'].'</td>
-            <td>'.$row['kata_dasar_1'].'</td>
-            <td>'.$row['waktu_1'].'</td>
-            <td>'.$status.'</td>
+            <td>'.$row['document'].'</td>
         </tr>';
 }
 echo '
@@ -172,98 +141,6 @@ echo '
         </div>
       </div>
     </div>
-  </div>
-
-    <div class="section">
-      <img src="assets/img/path4.png" class="path">
-      <div class="container align-items-center">
-        <div class="row">
-          <div class="col-lg-6 col-md-6">
-            <h1 class="profile-title text-left">EHCS</h1>
-            <h5 class="text-on-back">02</h5>
-            <p class="profile-description">Hasil Stemming dengan Algoritma EHCS</p>
-          </div>
-          <div class="col-lg-12">
-
-  <?php
-$db_host = 'localhost'; // Nama Server
-$db_user = 'root'; // User Server
-$db_pass = 'op'; // Password Server
-$db_name = 'stki'; // Nama Database
-
-$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-if (!$conn) {
-    die ('Gagal terhubung MySQL: ' . mysqli_connect_error());
-}
-
-$sql = 'SELECT id, kata, kata_dasar_2, waktu_2, status_2
-        FROM kata';
-
-$rata = 'SELECT AVG(waktu_2) FROM kata';
-
-$rataStatus = 'SELECT AVG(status_2) FROM kata';
-
-$query = mysqli_query($conn, $sql);
-$rataquery = mysqli_query($conn, $rata);
-$rataStatus = mysqli_query($conn, $rataStatus);
-
-if (!$query) {
-    die ('SQL Error: ' . mysqli_error($conn));
-}
-if (!$rataquery) {
-    die ('SQL Error: ' . mysqli_error($conn));
-}
-if (!$rataStatus) {
-    die ('SQL Error: ' . mysqli_error($conn));
-}
-
-$rowRataQuery = mysqli_fetch_array($rataquery);
-$rowRataStatus = mysqli_fetch_array($rataStatus);
-
-echo'<br><p class="profile-description">Rata - Rata Waktu yang digunakan = '.number_format($rowRataQuery['AVG(waktu_2)'], 6, '.', '').'</p>';
-echo'<br><p class="profile-description">Rata - Rata Keberhasilan = '. $rowRataStatus['AVG(status_2)'] * 100 .'%</p>';
-
-echo '<table id="example2" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Kata</th>
-                <th>Kata Dasar</th>
-                <th>Waktu</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>';
-
-while ($row = mysqli_fetch_array($query))
-{
-  $status = '';
-  if ($row['status_2'] == 1){
-    $status = 'berhasil';
-  } else if ($row['status_2'] == 0){
-    $status = 'gagal';
-  }
-    echo '<tr>
-            <td>'.$row['id'].'</td>
-            <td>'.$row['kata'].'</td>
-            <td>'.$row['kata_dasar_2'].'</td>
-            <td>'.$row['waktu_2'].'</td>
-            <td>'.$status.'</td>
-        </tr>';
-}
-echo '
-    </tbody>
-</table>';
-?>
-
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
   </div>
   <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js" type="text/javascript"></script>
@@ -290,7 +167,6 @@ echo '
   <script type="text/javascript">
   $(document).ready(function(){
     $('#example').DataTable();
-    $('#example2').DataTable();
   });
 </script>
 

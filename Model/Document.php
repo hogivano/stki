@@ -56,7 +56,7 @@
             }
           }
           $this->conn->close();
-          header("Location: /document.php");
+          header("Location: /list-document.php");
           die();
         }
 

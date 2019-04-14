@@ -54,7 +54,7 @@
   </nav>
   <!-- End Navbar -->
   <div class="wrapper">
-    <div class="page-header">
+    <div class="page-header" style="max-height: unset !important">
       <div class="page-header-image"></div>
       <div class="content">
         <div class="container">
@@ -75,10 +75,12 @@
                           <i class="tim-icons icon-notes"></i>
                         </div>
                       </div>
-                      <textarea class="form-control" id="dokumen" name="dokumen" placeholder="Isi Dokumen Yang Akan Di Stemming"></textarea>
-                      <button type="submit" class="btn btn-info btn-round btn-lg">Mulai Stemming</a>
+                      <textarea class="form-control" id="dokumen" style="max-height:1000px; height: 200px" name="dokumen" placeholder="Isi Dokumen Yang Akan Di Stemming"></textarea>
+                      <button type="submit" class="btn btn-info btn-round">Mulai Stemming</a>
                     </div>
                   </form>
+                  <a type="button" class="btn btn-primary" href="/list-document.php" style="margin-top: 20px" name="button">List Dokumen</a>
+                  <a type="button" class="btn btn-primary" href="/stem.php" style="margin-top: 20px" name="button">Stem</a>
                 </div>
               </div>
             </div>
